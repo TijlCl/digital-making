@@ -1,3 +1,4 @@
 export default {
-    currentCameraFrame: state => state.currentCameraFrame
+    currentLevel: state => state.currentLevel,
+    previousLevel: state => state.previousLevel
 }

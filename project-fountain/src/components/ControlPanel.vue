@@ -6,6 +6,7 @@
     <input type="button"  @click="setLevel(2)" value="Go to Level 3" />
     <input type="button"  @click="setLevel(3)" value="Go to Level 4" />
     <input type="button"  @click="setLevel(4)" value="Go to Level 5" />
+    t
   </div>
 </template>
 <script>

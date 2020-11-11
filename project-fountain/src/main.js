@@ -1,17 +1,22 @@
 import Vue from 'vue'
-import App from './App.vue'
+import app from './App.vue'
 import vb from 'vue-babylonjs'
 import Vuex from 'vuex'
 import store from './store'
-import modules from './store/modules'
+
+import vuetify from './plugins/vuetify'
+
 
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
-  store
+  render: h => h(app),
+  app,
+  store,
+  vuetify
 }).$mount('#app')
 
 Vue.use(vb);
 Vue.use(Vuex);
+Vue.use(vuetify);

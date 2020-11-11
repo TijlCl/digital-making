@@ -19,37 +19,37 @@ export default {
   data: () => ({
     myCam: null,
     cameraAnimation: null,
-    camPos: [0, 0, 0],
-    alpha: 0,
+    camPos: [0, 3, 0],
+    alpha: 0.006527343750000002,
     radius: 5,
-    beta: 0.5,
+    beta: 1.0936957457483611,
     levels: [
       {
-        target: new BABYLON.Vector3(0, 0, 0),
-        alpha: 0,
-        beta: 0.5,
+        target: new BABYLON.Vector3(0, 3, 0),
+        alpha: 0.006527343750000002,
+        beta: 1.0936957457483611,
         radius: 5
       },
       {
-        target: new BABYLON.Vector3(-1, 2, 0),
-        alpha: 3.1028209112914573,
-        beta: 1.3651935903716061,
-        radius: 5
+        target: new BABYLON.Vector3(0, 3, 0),
+        alpha: 3.141552325768091,
+        beta: 1.089769943338719,
+        radius: 7.3806202442978766
       },
       {
-        target: new BABYLON.Vector3(-2, 3, 0),
-        alpha: 1.5509699954515734,
+        target: new BABYLON.Vector3(-2, 5, 0),
+        alpha: 1.5567992412104268,
         beta: 1.2499153732814252,
-        radius: 6
+        radius: 7.162916214740841
       },
       {
-        target: new BABYLON.Vector3(-3, 5, 0),
-        alpha: -1.5673177603356705,
-        beta: 1.0236938562492426,
-        radius: 3.5
+        target: new BABYLON.Vector3(-3, 7, 0),
+        alpha: -1.591422484462345,
+        beta: 0.8398498613338736,
+        radius: 4.118716058228563
       },
       {
-        target: new BABYLON.Vector3(-1.5, 7, 0),
+        target: new BABYLON.Vector3(-1.5, 9, 0),
         alpha: 1.559111989188483,
         beta: 1.3964073940352668,
         radius: 5
@@ -67,6 +67,14 @@ export default {
   watch: {
     currentLevel(newVal, odlVal) {
       this.animate();
+    },
+    myCam(newVal, odlVal) {
+      if(odlVal === null) {
+        this.myCam.upperBetaLimit = 1.50079632679;
+        this.myCam.upperRadiusLimit = 75;
+        this.myCam.lowerRadiusLimit = 2;
+        this.myCam.wheelPrecision = 50;
+      }
     }
   },
   methods: {

@@ -20,9 +20,10 @@ export default {
     myCam: null,
     cameraAnimation: null,
     camPos: [0, 3, 0],
-    alpha: 0.006527343750000002,
-    radius: 5,
-    beta: 1.0936957457483611,
+    alpha: -0.683541238900989,
+    radius: 75,
+    beta: 1.3922062182845616,
+    // test: setTimeout(this.test(), 2000),
     levels: [
       {
         target: new BABYLON.Vector3(0, 3, 0),
@@ -56,6 +57,9 @@ export default {
       },
     ]
   }),
+  created() {
+    setTimeout(this.test, 4500)
+  },
   computed: {
     currentLevel() {
       return this.$store.getters["sceneEvents/currentLevel"];
@@ -66,6 +70,7 @@ export default {
   },
   watch: {
     currentLevel(newVal, odlVal) {
+      debugger;
       this.animate();
     },
     myCam(newVal, odlVal) {
@@ -78,7 +83,10 @@ export default {
     }
   },
   methods: {
-    animate() {
+    test() {
+      this.animate(-0.8848044749348015, 1.4211137192475227, 21.61858576698921, new BABYLON.Vector3(0, 3, 0))
+    },
+    animate(alpha, beta, radius, target) {
       const currentlevel = this.levels[this.currentLevel];
       const previouslevel = this.levels[this.previousLevel];
 
@@ -94,11 +102,11 @@ export default {
       var targetKeys = [];
       targetKeys.push({
       frame: 0,
-      value: previouslevel.target,
+      value: this.myCam.target,
       })
       targetKeys.push({
       frame: 100,
-      value: currentlevel.target,
+      value: target ?? currentlevel.target,
       });
       animationcameraTarget.setKeys(targetKeys);
 
@@ -114,11 +122,11 @@ export default {
       var alphaKeys = [];
       alphaKeys.push({
       frame: 0,
-      value: previouslevel.alpha,
+      value: this.myCam.alpha,
       })
       alphaKeys.push({
       frame: 100,
-      value: currentlevel.alpha,
+      value: alpha ?? currentlevel.alpha,
       });
       animationcameraAlpha.setKeys(alphaKeys);
 
@@ -133,11 +141,11 @@ export default {
       var betaKeys = [];
       betaKeys.push({
       frame: 0,
-      value: previouslevel.beta
+      value: this.myCam.beta
       })
       betaKeys.push({
       frame: 100,
-      value: currentlevel.beta
+      value: beta ?? currentlevel.beta
       });
       animationcameraBeta.setKeys(betaKeys);
 
@@ -152,11 +160,11 @@ export default {
       var radiusKeys = [];
       radiusKeys.push({
       frame: 0,
-      value: previouslevel.radius,
+      value: this.myCam.radius,
       })
       radiusKeys.push({
       frame: 100,
-      value: currentlevel.radius
+      value: radius ?? currentlevel.radius
       });
       animationcameraRadius.setKeys(radiusKeys);
 

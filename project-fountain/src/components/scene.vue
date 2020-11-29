@@ -56,6 +56,9 @@ export default {
     },
     zaxis () {
       return this.$store.getters["sceneEvents/zaxis"];
+    },
+    fogAmount () {
+      return this.$store.getters["sceneEvents/fogAmount"];
     }
   },
   beforeMount() {
@@ -87,6 +90,9 @@ export default {
     },
     zaxis(newVal) {
       this.animatedLight.position = new BABYLON.Vector3(this.yaxis, this.xaxis, newVal);
+    },
+    fogAmount(val) {
+      this.myScene.fogDensity = val;
     }
   },
   methods: {
@@ -98,7 +104,7 @@ export default {
           skyboxColor: new BABYLON.Color3(),
         })
         this.myScene.fogMode = BABYLON.Scene.FOGMODE_EXP;
-        scene.fogDensity = 0.01;
+        this.myScene.fogDensity = this.fogAmount;
         scene.fogColor = new BABYLON.Color3(0.9, 0.9, 0.85);
         this.sceneReady = true;
       },

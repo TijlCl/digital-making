@@ -15,5 +15,26 @@ export default {
     },
     setYaxis(state, value) {
         state.yaxis = value;
-    }
+    },
+    setFogAmount(state, fogAmount) {
+        state.fogAmount = fogAmount;
+    },
+    setParticleSpeed(state, particleSpeed) {
+        state.particleSpeed = particleSpeed;
+    },
+    setParticleAmount(state, particleAmount) {
+        state.particleAmount = particleAmount;
+    },
+    setParticleColor1(state, particleColor) {
+        state.particleColor1 = particleColor;
+    },
+    setParticleColor2(state, particleColor) {
+        state.particleColor2 = particleColor;
+    },
+    setParticleMinSize(state, particleMinSize) {
+        state.particleMinSize = particleMinSize;
+    },
+    setParticleMaxSize(state, particleMaxSize) {
+        state.particleMaxSize = particleMaxSize;
+    },
 }

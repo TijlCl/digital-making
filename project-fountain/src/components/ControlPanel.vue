@@ -24,7 +24,7 @@
       </v-expansion-panel>
       <v-expansion-panel :key="2">
         <v-expansion-panel-header class="camera-color">
-          CAMERA PANEL
+          LIGHT PANEL
           <template v-slot:actions>
             <v-icon>
             </v-icon>
@@ -51,16 +51,82 @@
             ></v-slider>
         </v-expansion-panel-content>
       </v-expansion-panel>
+      <v-expansion-panel :key="3">
+        <v-expansion-panel-header class="camera-color">
+          PARTICLE PANEL
+          <template v-slot:actions>
+            <v-icon>
+            </v-icon>
+          </template>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content class="camera-color">
+          <v-subheader class="sh">Min particle size</v-subheader>
+            <v-slider
+            v-model="particleMinSize"
+              max="1"
+              step="0.1"
+              min="0.1"
+            ></v-slider>
+            <v-subheader class="sh">Max particle size</v-subheader>
+            <v-slider
+            v-model="particleMaxSize"
+              max="2"
+              step="0.1"
+              min="0.4"
+            ></v-slider>
+            <v-subheader class="sh">Particle height</v-subheader>
+            <v-slider
+            v-model="particleSpeed"
+              max="9"
+              min="2"
+            ></v-slider>
+            <v-subheader class="sh">Particle amount</v-subheader>
+            <v-slider
+            v-model="particleAmount"
+              max="2000"
+              min="400"
+            ></v-slider>
+            <v-layout row>
+              <v-color-picker
+              class="mr-1"
+              v-model="particleColor1"
+              hide-inputs
+            ></v-color-picker>
+            <v-color-picker
+              v-model="particleColor2"
+              hide-inputs
+            ></v-color-picker>
+            </v-layout>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <v-expansion-panel :key="4">
+        <v-expansion-panel-header class="camera-color">
+          FOG PANEL
+          <template v-slot:actions>
+            <v-icon>
+            </v-icon>
+          </template>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content class="camera-color">
+          <v-subheader class="sh">Fog density</v-subheader>
+            <v-slider
+              v-model="fogAmount"
+              max="0.1"
+              min="0.01"
+              step="0.01"
+            ></v-slider>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
     </v-expansion-panels>
   </div>
 </template>
 <script>
-import { VBtn, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VIcon, VExpansionPanelIcon, VSlider } from 'vuetify/lib'
+import { VBtn, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VIcon, VExpansionPanelIcon, VSlider, VSubheader, VColorPicker, VLayout } from 'vuetify/lib'
 
 
 export default {
   name: 'control-panel',
-  components: { VBtn, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VIcon, VSlider },
+  components: { VBtn, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VIcon, VSlider, VSubheader, VColorPicker, VLayout },
   data: () => ({
   }),
   computed: {
@@ -86,6 +152,62 @@ export default {
       }, 
       set(val) {
         this.$store.commit("sceneEvents/setZaxis", val);
+      }
+    },
+    fogAmount: {
+      get () {
+        return this.$store.getters["sceneEvents/fogAmount"];
+      }, 
+      set(val) {
+        this.$store.commit("sceneEvents/setFogAmount", val);
+      }
+    },
+    particleAmount: {
+      get () {
+        return this.$store.getters["sceneEvents/particleAmount"];
+      }, 
+      set(val) {
+        this.$store.commit("sceneEvents/setParticleAmount", val);
+      }
+    },
+    particleSpeed: {
+      get () {
+        return this.$store.getters["sceneEvents/particleSpeed"];
+      }, 
+      set(val) {
+        this.$store.commit("sceneEvents/setParticleSpeed", val);
+      }
+    },
+    particleColor1: {
+      get () {
+        return this.$store.getters["sceneEvents/particleColor1"];
+      }, 
+      set(val) {
+        this.$store.commit("sceneEvents/setParticleColor1", val);
+      }
+    },
+    particleColor2: {
+      get () {
+        return this.$store.getters["sceneEvents/particleColor2"];
+      }, 
+      set(val) {
+        this.$store.commit("sceneEvents/setParticleColor2", val);
+      }
+    },
+    particleMinSize: {
+      get () {
+        return this.$store.getters["sceneEvents/particleMinSize"];
+      }, 
+      set(val) {
+        this.$store.commit("sceneEvents/setParticleMinSize", val);
+      }
+    },
+    particleMaxSize: {
+      get () {
+        return this.$store.getters["sceneEvents/particleMaxSize"];
+      }, 
+      set(val) {
+        this.$store.commit("sceneEvents/setParticleMaxSize", val);
       }
     }
   },
@@ -133,6 +255,9 @@ html, body {
   color: white !important;
 }
 .v-btn {
+  color: white !important;
+}
+.sh {
   color: white !important;
 }
 </style>

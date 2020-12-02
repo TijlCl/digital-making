@@ -14,7 +14,9 @@ export default {
   components: {Camera, Entity, Animation, Key},
   mixins: [Entity],
   props: {
-    scene: Object
+    scene: Object,
+    light: Object,
+    fountain: Object
   },
   data: () => ({
     myCam: null,
@@ -69,15 +71,17 @@ export default {
     }
   },
   watch: {
+    light() {
+      this.myCam.target = new BABYLON.Vector3(this.fountain.position.x, this.fountain.position.y + 5, this.fountain.position.z);//The camera looks at the target camera.radius = 30; //Distance between the camera and the target
+    },
     currentLevel(newVal, odlVal) {
-      debugger;
       this.animate();
     },
     myCam(newVal, odlVal) {
       if(odlVal === null) {
         this.myCam.upperBetaLimit = 1.50079632679;
         this.myCam.upperRadiusLimit = 75;
-        this.myCam.lowerRadiusLimit = 2;
+        this.myCam.lowerRadiusLimit = 20;
         this.myCam.wheelPrecision = 50;
       }
     }
@@ -98,7 +102,8 @@ export default {
             BABYLON.Animation.ANIMATIONTYPE_VECTOR3, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
- 
+      var bezierEase = new BABYLON.BezierCurveEase(0.32, -0.73, 0.69, 1.59);
+      animationcameraTarget.setEasingFunction(bezierEase);
       var targetKeys = [];
       targetKeys.push({
       frame: 0,
@@ -118,7 +123,8 @@ export default {
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
- 
+      var bezierEase = new BABYLON.BezierCurveEase(0.32, -0.73, 0.69, 1.59);
+      animationcameraAlpha.setEasingFunction(bezierEase);
       var alphaKeys = [];
       alphaKeys.push({
       frame: 0,
@@ -138,6 +144,8 @@ export default {
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
+      var bezierEase = new BABYLON.BezierCurveEase(0.32, -0.73, 0.69, 1.59);
+      animationcameraBeta.setEasingFunction(bezierEase);
       var betaKeys = [];
       betaKeys.push({
       frame: 0,
@@ -157,6 +165,8 @@ export default {
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
+      var bezierEase = new BABYLON.BezierCurveEase(0.32, -0.73, 0.69, 1.59);
+      animationcameraRadius.setEasingFunction(bezierEase);
       var radiusKeys = [];
       radiusKeys.push({
       frame: 0,

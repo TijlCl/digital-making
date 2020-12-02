@@ -39,9 +39,9 @@
             ></v-slider>
             <v-slider
             v-model="yaxis"
-              max="10"
+              max="20"
               thumb-label="always"
-              min="-40"
+              min="-20"
             ></v-slider>
             <v-slider
             v-model="zaxis"

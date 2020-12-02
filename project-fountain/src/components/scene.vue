@@ -8,9 +8,11 @@
       </Entity>
       <Ground v-model="myGround" :options="{ height: 1000, width: 1000 }">
       </Ground>
-      <my-camera :scene="myScene" />
+      <my-camera :scene="myScene" :light="animatedLight" :fountain="fountain" />
       <particles :scene="myScene" :ground="myGround"/>
       <water :scene="myScene" :ground="myGround" :fountain="fountain"/>
+      <graduation-hat :scene="myScene"/>
+      <school-front :scene="myScene" />
     </Scene>
   </div>
 </template>
@@ -27,11 +29,13 @@ import sceneEventModule from "../store/modules/SceneEvents"
 import controlPanel from "./ControlPanel.vue"
 import * as BABYLON from "@babylonjs/core"
 import Water from './Water.vue';
+import GraduationHat from './GraduationHat.vue';
+import SchoolFront from './SchoolFront.vue';
 
 
 export default {
   name: 'fountain-scene',
-  components: { Scene, Asset, Camera, Entity, Animation, DirectionalLight, PointLight, Box, myCamera, controlPanel, Sphere, Material, SpotLight, HemisphericLight, Ground, Property, Particles, Water },
+  components: { Scene, Asset, Camera, Entity, Animation, DirectionalLight, PointLight, Box, myCamera, controlPanel, Sphere, Material, SpotLight, HemisphericLight, Ground, Property, Particles, Water, GraduationHat, SchoolFront },
   mixins: [Entity],
   data: () => ({
     path: Fountain,
@@ -59,7 +63,7 @@ export default {
     },
     fogAmount () {
       return this.$store.getters["sceneEvents/fogAmount"];
-    }
+    },
   },
   beforeMount() {
     this.$store.registerModule("events", sceneEventModule);
@@ -72,15 +76,15 @@ export default {
     },
     fountain(newVal, oldVal) {
       if(oldVal === null) {
-      this.animatedLight = new BABYLON.SpotLight("*spot00", new BABYLON.Vector3(-14, 20, 0), new BABYLON.Vector3(1, -1, 0), Math.PI / 3, 80, this.myScene);
+      this.animatedLight = new BABYLON.SpotLight("*spot00", new BABYLON.Vector3(16, 22, 0), new BABYLON.Vector3(-1, -1, 0),  1.5, 80, this.myScene);
       this.animatedLight.diffuse = new BABYLON.Color3(0, 1, 1);
 	    this.animatedLight.specular = new BABYLON.Color3(0, 1, 1);
       }
       var shadowGenerator = new BABYLON.ShadowGenerator(1024, this.animatedLight);
       shadowGenerator.getShadowMap().renderList.push(this.fountain);
-	    shadowGenerator.addShadowCaster(this.fountain);
+      shadowGenerator.addShadowCaster(this.fountain);
 
-	    this.myGround.receiveShadows = true;
+      this.myGround.receiveShadows = true;
     },
     xaxis(newVal) {
       this.animatedLight.position = new BABYLON.Vector3(this.yaxis, newVal, this.zaxis);

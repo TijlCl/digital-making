@@ -74,6 +74,7 @@ export default {
   color: white;
   font-family: 'Roboto', sans-serif;
   padding: 70px 0;
+  z-index: 10;
 }
 #loader-text {
   opacity: 0;

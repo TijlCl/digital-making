@@ -1,6 +1,7 @@
 <template>
   <div>
     <control-panel />
+    <timeline />
     <Scene v-model="myScene" ref="scene" @keydown.native="keyHandlerDown" @complete="sceneComplete" >
       <Entity :position="[0,2.1,0]">
         <Asset v-model="fountain" v-if="sceneReady" :src="path" :scaling="[1, 1, 1]" >
@@ -13,6 +14,7 @@
       <water :scene="myScene" :ground="myGround" :fountain="fountain"/>
       <graduation-hat :scene="myScene"/>
       <school-front :scene="myScene" />
+      <first-year :scene="myScene" />
     </Scene>
   </div>
 </template>
@@ -31,11 +33,13 @@ import * as BABYLON from "@babylonjs/core"
 import Water from './Water.vue';
 import GraduationHat from './GraduationHat.vue';
 import SchoolFront from './SchoolFront.vue';
+import Timeline from './Timeline.vue';
+import FirstYear from './FirstYear.vue';
 
 
 export default {
   name: 'fountain-scene',
-  components: { Scene, Asset, Camera, Entity, Animation, DirectionalLight, PointLight, Box, myCamera, controlPanel, Sphere, Material, SpotLight, HemisphericLight, Ground, Property, Particles, Water, GraduationHat, SchoolFront },
+  components: { Scene, Asset, Camera, Entity, Animation, DirectionalLight, PointLight, Box, myCamera, controlPanel, Sphere, Material, SpotLight, HemisphericLight, Ground, Property, Particles, Water, GraduationHat, SchoolFront, Timeline, FirstYear },
   mixins: [Entity],
   data: () => ({
     path: Fountain,

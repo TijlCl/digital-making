@@ -32,6 +32,7 @@ export default {
   },
   methods: {
     createClickPlane() {
+      let l = this;
       var grass1 = new BABYLON.StandardMaterial("grass1", this.scene);
       grass1.emissiveTexture = new BABYLON.Texture(waterT, this.scene);
       grass1.emissiveColor = new BABYLON.Color3(0, 1, 1);
@@ -40,17 +41,35 @@ export default {
       plane.position = new BABYLON.Vector3(0, 2.54, 0);
       plane.rotation = new BABYLON.Vector3(1.55, 0, 0);
       plane.actionManager = new BABYLON.ActionManager(this.scene);
+      plane.material = grass1;
+      const frameRate = 100;
+      const xSlide = new BABYLON.Animation("xSlide", "material.alpha", frameRate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+      const keyFrames = [];
+      keyFrames.push({
+          frame: 0,
+          value: 0
+      });
+      keyFrames.push({
+          frame: 200,
+          value: 1
+      });
+      keyFrames.push({
+          frame: 300,
+          value: 0
+      });
+
+      xSlide.setKeys(keyFrames);
+
+      plane.animations.push(xSlide);
+
+      this.scene.beginAnimation(plane, 0, 300, true);
+
       plane.actionManager.registerAction(
         new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger, function(m){
-            plane.material = grass1;
+            
         })
       );
-      plane.actionManager.registerAction(
-        new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger, function(m){
-            plane.material = null;
-        })
-      );
-      let l = this;
+      
       plane.actionManager.registerAction(
         new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function(m){
             plane.material = null;

@@ -9,12 +9,14 @@
       </Entity>
       <Ground v-model="myGround" :options="{ height: 1000, width: 1000 }">
       </Ground>
-      <my-camera :scene="myScene" :light="animatedLight" :fountain="fountain" />
+      <my-camera :scene="myScene" :light="animatedLight" :fountain="fountain" :start="start"/>
       <particles :scene="myScene" :ground="myGround"/>
       <water :scene="myScene" :ground="myGround" :fountain="fountain"/>
       <graduation-hat :scene="myScene"/>
       <school-front :scene="myScene" />
       <first-year :scene="myScene" />
+      <second-year :scene="myScene" />
+      <third-year :scene="myScene" />
     </Scene>
   </div>
 </template>
@@ -35,12 +37,17 @@ import GraduationHat from './GraduationHat.vue';
 import SchoolFront from './SchoolFront.vue';
 import Timeline from './Timeline.vue';
 import FirstYear from './FirstYear.vue';
+import SecondYear from './SecondYear.vue';
+import ThirdYear from './ThirdYear.vue';
 
 
 export default {
   name: 'fountain-scene',
-  components: { Scene, Asset, Camera, Entity, Animation, DirectionalLight, PointLight, Box, myCamera, controlPanel, Sphere, Material, SpotLight, HemisphericLight, Ground, Property, Particles, Water, GraduationHat, SchoolFront, Timeline, FirstYear },
+  components: { Scene, Asset, Camera, Entity, Animation, DirectionalLight, PointLight, Box, myCamera, controlPanel, Sphere, Material, SpotLight, HemisphericLight, Ground, Property, Particles, Water, GraduationHat, SchoolFront, Timeline, FirstYear, SecondYear, ThirdYear },
   mixins: [Entity],
+  props: {
+    start: Boolean
+  },
   data: () => ({
     path: Fountain,
     testpath: Test,

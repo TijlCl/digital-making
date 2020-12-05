@@ -16,7 +16,8 @@ export default {
   props: {
     scene: Object,
     light: Object,
-    fountain: Object
+    fountain: Object,
+    start: Boolean
   },
   data: () => ({
     myCam: null,
@@ -59,9 +60,6 @@ export default {
       },
     ]
   }),
-  created() {
-    setTimeout(this.test, 4500)
-  },
   computed: {
     currentLevel() {
       return this.$store.getters["sceneEvents/currentLevel"];
@@ -71,6 +69,11 @@ export default {
     }
   },
   watch: {
+    start(newVal) {
+      if(newVal === true) {
+        this.test();
+      }
+    },
     light() {
       this.myCam.target = new BABYLON.Vector3(this.fountain.position.x, this.fountain.position.y + 5, this.fountain.position.z);//The camera looks at the target camera.radius = 30; //Distance between the camera and the target
     },
@@ -83,14 +86,15 @@ export default {
         this.myCam.upperRadiusLimit = 75;
         this.myCam.lowerRadiusLimit = 20;
         this.myCam.wheelPrecision = 50;
+        this.myCam.allowUpsideDown = false;
       }
     }
   },
   methods: {
     test() {
-      this.animate(-0.8848044749348015, 1.4211137192475227, 21.61858576698921, new BABYLON.Vector3(0, 3, 0))
+      this.animate(0.006527343750000002, 1.0936957457483611, 5, new BABYLON.Vector3(0, 3, 0), 3)
     },
-    animate(alpha, beta, radius, target) {
+    async animate(alpha, beta, radius, target, speed = 1) {
       const currentlevel = this.levels[this.currentLevel];
       const previouslevel = this.levels[this.previousLevel];
 
@@ -102,7 +106,7 @@ export default {
             BABYLON.Animation.ANIMATIONTYPE_VECTOR3, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
-      var bezierEase = new BABYLON.BezierCurveEase(0.32, -0.73, 0.69, 1.59);
+      var bezierEase = new BABYLON.BezierCurveEase(0.30, -0.40, 0.30, 1.3);
       animationcameraTarget.setEasingFunction(bezierEase);
       var targetKeys = [];
       targetKeys.push({
@@ -110,7 +114,7 @@ export default {
       value: this.myCam.target,
       })
       targetKeys.push({
-      frame: 100,
+      frame: 100 * speed,
       value: target ?? currentlevel.target,
       });
       animationcameraTarget.setKeys(targetKeys);
@@ -123,7 +127,7 @@ export default {
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
-      var bezierEase = new BABYLON.BezierCurveEase(0.32, -0.73, 0.69, 1.59);
+      var bezierEase = new BABYLON.BezierCurveEase(0.30, -0.40, 0.30, 1.3);
       animationcameraAlpha.setEasingFunction(bezierEase);
       var alphaKeys = [];
       alphaKeys.push({
@@ -131,7 +135,7 @@ export default {
       value: this.myCam.alpha,
       })
       alphaKeys.push({
-      frame: 100,
+      frame: 100 * speed,
       value: alpha ?? currentlevel.alpha,
       });
       animationcameraAlpha.setKeys(alphaKeys);
@@ -144,7 +148,7 @@ export default {
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
-      var bezierEase = new BABYLON.BezierCurveEase(0.32, -0.73, 0.69, 1.59);
+      var bezierEase = new BABYLON.BezierCurveEase(0.30, -0.40, 0.30, 1.3);
       animationcameraBeta.setEasingFunction(bezierEase);
       var betaKeys = [];
       betaKeys.push({
@@ -152,7 +156,7 @@ export default {
       value: this.myCam.beta
       })
       betaKeys.push({
-      frame: 100,
+      frame: 100 * speed,
       value: beta ?? currentlevel.beta
       });
       animationcameraBeta.setKeys(betaKeys);
@@ -165,7 +169,7 @@ export default {
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
-      var bezierEase = new BABYLON.BezierCurveEase(0.32, -0.73, 0.69, 1.59);
+      var bezierEase = new BABYLON.BezierCurveEase(0.30, -0.40, 0.30, 1.3);
       animationcameraRadius.setEasingFunction(bezierEase);
       var radiusKeys = [];
       radiusKeys.push({
@@ -173,7 +177,7 @@ export default {
       value: this.myCam.radius,
       })
       radiusKeys.push({
-      frame: 100,
+      frame: 100 * speed,
       value: radius ?? currentlevel.radius
       });
       animationcameraRadius.setKeys(radiusKeys);
@@ -184,8 +188,23 @@ export default {
       this.myCam.animations.push(animationcameraAlpha);
       this.myCam.animations.push(animationcameraBeta);
       this.myCam.animations.push(animationcameraRadius);
-      this.$scene.beginAnimation(this.myCam, 0, 100, false, 1);
+
+      this.myCam.upperBetaLimit = null;
+      this.myCam.lowerBetaLimit = null;
+      this.myCam.upperAlphaLimit = null;
+      this.myCam.lowerAlphaLimit = null;
+
+      const myAnim =  this.$scene.beginAnimation(this.myCam, 0, 100 * speed, false, 1);
+
+      setTimeout(() => { 
+      this.myCam.upperBetaLimit = currentlevel.beta;
+      this.myCam.lowerBetaLimit = currentlevel.beta;
+      this.myCam.upperAlphaLimit = currentlevel.alpha;
+      this.myCam.lowerAlphaLimit = currentlevel.alpha;
+       }, 3500 * speed);
+
+      
     },
   }
 }
-</script>1
+</script>

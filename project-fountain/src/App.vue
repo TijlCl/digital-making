@@ -1,6 +1,7 @@
 <template>
 <v-app>
   <div id="data-app">
+    <div class="noise"></div>
     <fountain-scene class="scene" :start="appStarted"/>
     <div id="loader">
       <h1 id="loader-text">Each year hundreds of students start there journey, but only a few manage to reach the top</h1>
@@ -100,4 +101,36 @@ export default {
 #loader-text {
   opacity: 0;
 }
+
+.noise {
+  position: fixed;
+    z-index: 50;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200vh;
+    background: transparent url('../public/noise.png') repeat 0 0;
+    background-repeat: repeat;
+    animation: bg-animation .2s infinite;
+    opacity: .30;
+    visibility: visible;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    pointer-events: none;
+
+    animation: noise .2s infinite;
+    
+
+}
+@keyframes noise{
+  0%{transform:translate(0)}
+  10%{transform:translate(-5%,-5%)}
+  20%{transform:translate(-10%,5%)}
+  40%{transform:translate(-5%,15%)}
+  60%{transform:translate(15%)}
+  70%{transform:translateY(10%)}
+  80%{transform:translate(-15%)}
+  to{transform:translate(5%)}}
 </style>

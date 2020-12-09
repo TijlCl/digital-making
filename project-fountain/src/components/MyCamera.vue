@@ -102,11 +102,11 @@ export default {
       var animationcameraTarget = new BABYLON.Animation(
             "myAnimationcamera", 
             "target", 
-            30, 
+            speed === 3 ? 30 : 20, 
             BABYLON.Animation.ANIMATIONTYPE_VECTOR3, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
-      var bezierEase = new BABYLON.BezierCurveEase(0.30, -0.40, 0.30, 1.3);
+      var bezierEase = new BABYLON.BezierCurveEase(0, 0, 0.50, 1.2);
       animationcameraTarget.setEasingFunction(bezierEase);
       var targetKeys = [];
       targetKeys.push({
@@ -123,11 +123,11 @@ export default {
       var animationcameraAlpha = new BABYLON.Animation(
             "myAnimationcamera", 
             "alpha", 
-            30, 
+            speed === 3 ? 30 : 20, 
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
-      var bezierEase = new BABYLON.BezierCurveEase(0.30, -0.40, 0.30, 1.3);
+      var bezierEase = new BABYLON.BezierCurveEase(0, 0, 0.50, 1.2);
       animationcameraAlpha.setEasingFunction(bezierEase);
       var alphaKeys = [];
       alphaKeys.push({
@@ -144,11 +144,11 @@ export default {
       var animationcameraBeta = new BABYLON.Animation(
             "myAnimationcamera", 
             "beta", 
-            30, 
+            speed === 3 ? 30 : 20, 
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
-      var bezierEase = new BABYLON.BezierCurveEase(0.30, -0.40, 0.30, 1.3);
+      var bezierEase = new BABYLON.BezierCurveEase(0, 0, 0.50, 1.2);
       animationcameraBeta.setEasingFunction(bezierEase);
       var betaKeys = [];
       betaKeys.push({
@@ -165,11 +165,11 @@ export default {
       var animationcameraRadius = new BABYLON.Animation(
             "myAnimationcamera", 
             "radius", 
-            30, 
+            speed === 3 ? 30 : 20, 
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
-      var bezierEase = new BABYLON.BezierCurveEase(0.30, -0.40, 0.30, 1.3);
+      var bezierEase = new BABYLON.BezierCurveEase(0, 0, 0.50, 1.2);
       animationcameraRadius.setEasingFunction(bezierEase);
       var radiusKeys = [];
       radiusKeys.push({
@@ -189,19 +189,19 @@ export default {
       this.myCam.animations.push(animationcameraBeta);
       this.myCam.animations.push(animationcameraRadius);
 
-      this.myCam.upperBetaLimit = null;
-      this.myCam.lowerBetaLimit = null;
-      this.myCam.upperAlphaLimit = null;
-      this.myCam.lowerAlphaLimit = null;
+      // this.myCam.upperBetaLimit = null;
+      // this.myCam.lowerBetaLimit = null;
+      // this.myCam.upperAlphaLimit = null;
+      // this.myCam.lowerAlphaLimit = null;
 
       const myAnim =  this.$scene.beginAnimation(this.myCam, 0, 100 * speed, false, 1);
 
-      setTimeout(() => { 
-      this.myCam.upperBetaLimit = currentlevel.beta;
-      this.myCam.lowerBetaLimit = currentlevel.beta;
-      this.myCam.upperAlphaLimit = currentlevel.alpha;
-      this.myCam.lowerAlphaLimit = currentlevel.alpha;
-       }, 3500 * speed);
+      // setTimeout(() => { 
+      // this.myCam.upperBetaLimit = currentlevel.beta;
+      // this.myCam.lowerBetaLimit = currentlevel.beta;
+      // this.myCam.upperAlphaLimit = currentlevel.alpha;
+      // this.myCam.lowerAlphaLimit = currentlevel.alpha;
+      //  }, 6000 * speed);
 
       
     },

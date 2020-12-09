@@ -1,7 +1,7 @@
 <template>
   <div>
     <control-panel />
-    <timeline />
+    <timeline :start="start" />
     <Scene v-model="myScene" ref="scene" @keydown.native="keyHandlerDown" @complete="sceneComplete" >
       <Entity :position="[0,2.1,0]">
         <Asset v-model="fountain" v-if="sceneReady" :src="path" :scaling="[1, 1, 1]" >

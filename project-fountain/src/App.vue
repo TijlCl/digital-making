@@ -22,19 +22,21 @@ window.setTimeout(function(){
   var loopback = false;
 
 function MyFadeFunction() {
-   if(TextOpacity < 1 || BtnOpacity < 1) {
+   if(window.appStarted === false && (TextOpacity < 1 || BtnOpacity < 1)) {
        TextOpacity += .075;
-       if (TextOpacity > 1) {
+       if (TextOpacity > .5) {
          BtnOpacity += .075;
-       }
-       if (!loopback) {
        }
    }
 
    if (window.appStarted === true) {
+    //  bgOpacity -= .05;
+     TextOpacity -= .1;
+     BtnOpacity -= .1;
+   }
+
+   if (window.appStarted === true && BtnOpacity < 0 && TextOpacity < 0) {
      bgOpacity -= .05;
-     TextOpacity -= .03;
-     TextOpacity -= .05;
    }
 
    document.getElementById('loader-text').style.opacity = TextOpacity;

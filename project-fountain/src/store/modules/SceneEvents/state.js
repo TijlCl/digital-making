@@ -14,4 +14,5 @@ export default {
     particleColor2: new BABYLON.Color3(0.51, 0.66, 0.89).toHexString(),
     particleMinSize: 0.2,
     particleMaxSize: 0.6,
+    looped: false
 }

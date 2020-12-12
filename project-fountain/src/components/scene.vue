@@ -2,7 +2,8 @@
   <div>
     <control-panel />
     <timeline :start="start" />
-    <Scene v-model="myScene" ref="scene" @keydown.native="keyHandlerDown" @complete="sceneComplete" >
+    <student-amount :start="start" />
+    <Scene style="height: 100vh;" v-model="myScene" ref="scene" @keydown.native="keyHandlerDown" @complete="sceneComplete" >
       <Entity :position="[0,2.1,0]">
         <Asset v-model="fountain" v-if="sceneReady" :src="path" :scaling="[1, 1, 1]" >
         </Asset>
@@ -39,11 +40,12 @@ import Timeline from './Timeline.vue';
 import FirstYear from './FirstYear.vue';
 import SecondYear from './SecondYear.vue';
 import ThirdYear from './ThirdYear.vue';
+import StudentAmount from './StudentAmount.vue';
 
 
 export default {
   name: 'fountain-scene',
-  components: { Scene, Asset, Camera, Entity, Animation, DirectionalLight, PointLight, Box, myCamera, controlPanel, Sphere, Material, SpotLight, HemisphericLight, Ground, Property, Particles, Water, GraduationHat, SchoolFront, Timeline, FirstYear, SecondYear, ThirdYear },
+  components: { Scene, Asset, Camera, Entity, Animation, DirectionalLight, PointLight, Box, myCamera, controlPanel, Sphere, Material, SpotLight, HemisphericLight, Ground, Property, Particles, Water, GraduationHat, SchoolFront, Timeline, FirstYear, SecondYear, ThirdYear, StudentAmount },
   mixins: [Entity],
   props: {
     start: Boolean

@@ -4,8 +4,12 @@
     <div class="noise"></div>
     <fountain-scene class="scene" :start="appStarted"/>
     <div id="loader">
-      <h1 id="loader-text">Each year hundreds of students start there journey, but only a few manage to reach the top</h1>
-      <v-btn @click="start()" id="start-btn" outlined rounded color="white">Start</v-btn>
+      <h1 id="title">The journey of students</h1>
+      <h2 id="loader-text-1">The journey of a student is full challenges, the few who push through will reach the top</h2>
+      <br />
+      <h3 id="loader-text-2">This visualisation will take you through the years of multec students and show you how many actually reach graduation.</h3>
+      <h3 id="loader-text-3">Each year hundreds of students start their multec career but through the 3 years most of the students fall off.</h3>
+      <v-btn @click="start()" id="start-btn" outlined color="white">Start your journey</v-btn>
     </div>
   </div>
 </v-app>
@@ -18,35 +22,53 @@ import fountainScene from './components/scene.vue'
 import { VApp } from 'vuetify/lib'
 window.setTimeout(function(){
   var bgOpacity = 1;
-  var TextOpacity = 0;
+  var titleOpacity = 0;
+  var text1Opacity = 0;
+  var text2Opacity = 0;
+  var text3Opacity = 0;
   var BtnOpacity = 0;
   var loopback = false;
 
 function MyFadeFunction() {
-   if(window.appStarted === false && (TextOpacity < 1 || BtnOpacity < 1)) {
-       TextOpacity += .075;
-       if (TextOpacity > .5) {
-         BtnOpacity += .075;
-       }
+   if(window.appStarted === false && titleOpacity < 1) {
+       titleOpacity += .075;
+   }
+   if(window.appStarted === false && titleOpacity >= 0.7 && text1Opacity < 1) {
+       text1Opacity += .03;
+   }
+   if(window.appStarted === false && text1Opacity >= 0.7 && text2Opacity < 1) {
+       text2Opacity += .075;
+       text3Opacity += .075;
+   }
+
+   if(window.appStarted === false && text3Opacity >= 1 && BtnOpacity < 1) {
+       BtnOpacity += .075;
    }
 
    if (window.appStarted === true) {
-    //  bgOpacity -= .05;
-     TextOpacity -= .1;
+     titleOpacity -= .1;
+     text1Opacity -= .1;
+     text2Opacity -= .1;
+     text3Opacity -= .1;
      BtnOpacity -= .1;
    }
 
-   if (window.appStarted === true && BtnOpacity < 0 && TextOpacity < 0) {
+   if (window.appStarted === true && BtnOpacity < 0) {
      bgOpacity -= .05;
    }
 
-   document.getElementById('loader-text').style.opacity = TextOpacity;
+   document.getElementById('title').style.opacity = titleOpacity;
+   document.getElementById('loader-text-1').style.opacity = text1Opacity;
+   document.getElementById('loader-text-2').style.opacity = text2Opacity;
+   document.getElementById('loader-text-3').style.opacity = text3Opacity;
+   
+   
    document.getElementById('start-btn').style.opacity = BtnOpacity;
    document.getElementById('loader').style.opacity = bgOpacity;
    if (bgOpacity < 0) {
     document.getElementById('loader').style.display = 'none';
    }
-   if (window.appStarted === false || TextOpacity > 0 || BtnOpacity > 0 || bgOpacity > 0) {
+   if (window.appStarted === false || titleOpacity > 0 || BtnOpacity > 0 || bgOpacity > 0) {
     setTimeout(function(){MyFadeFunction()},100);
    }
 }
@@ -80,6 +102,53 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
+#title {
+  font-size: 70px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 35vh;
+  text-align: center;
+  opacity: 0;
+}
+#loader-text-1 {
+  font-size: 16px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 42vh;
+  text-align: center;
+  opacity: 0;
+}
+
+#loader-text-2 {
+  font-size: 18px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 50vh;
+  text-align: center;
+  opacity: 0;
+}
+#loader-text-3 {
+  font-size: 18px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 53vh;
+  text-align: center;
+  opacity: 0;
+}
+
+
 #loader {
   height: 100vh;
   width: 100vw;
@@ -94,9 +163,15 @@ export default {
 }
 #start-btn {
   position: absolute;
-  top: 70vh;
-  left: 48vw;
+  top: 60vh;
+  left: 45.57vw;
   opacity: 0;
+  border: 0;
+  font-weight: 900;
+}
+#start-btn:hover {
+  border-bottom: white 1px;
+  background-color: none;
 }
 #loader-text {
   opacity: 0;

@@ -37,4 +37,7 @@ export default {
     setParticleMaxSize(state, particleMaxSize) {
         state.particleMaxSize = particleMaxSize;
     },
+    setLooped(state, looped) {
+        state.looped = looped
+    }
 }

@@ -117,6 +117,24 @@
             ></v-slider>
         </v-expansion-panel-content>
       </v-expansion-panel>
+      <v-expansion-panel :key="5">
+        <v-expansion-panel-header class="camera-color">
+          SIMULATION PANEL
+          <template v-slot:actions>
+            <v-icon>
+            </v-icon>
+          </template>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content class="camera-color">
+          <div class="row">
+            <v-btn block @click="particleAmount += 10" tile color="#51acad">CHECKIN</v-btn>
+            <v-btn block @click="particleAmount = 500" tile color="#51acad">50 STUDENTS</v-btn>
+            <v-btn block @click="particleAmount = 1000" tile color="#51acad">100 STUDENTS</v-btn>
+            <v-btn block @click="particleAmount = 2000" tile color="#51acad">200 STUDENTS</v-btn>
+            <v-btn block @click="particleAmount = 5000" tile color="#51acad">500 STUDENTS</v-btn>
+          </div>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
     </v-expansion-panels>
   </div>
 </template>

@@ -26,37 +26,38 @@ export default {
     alpha: -0.683541238900989,
     radius: 75,
     beta: 1.3922062182845616,
+    animation: null,
     // test: setTimeout(this.test(), 2000),
     levels: [
       {
         target: new BABYLON.Vector3(0, 3, 0),
-        alpha: 0.006527343750000002,
-        beta: 1.0936957457483611,
-        radius: 5
+        alpha: -0.0343653428024522,
+        beta: 1.3916035668033477,
+        radius: 10
       },
       {
         target: new BABYLON.Vector3(0, 3, 0),
-        alpha: 3.141552325768091,
-        beta: 1.089769943338719,
-        radius: 7.3806202442978766
+        alpha: 3.1446343570180897,
+        beta: 1.3397326767877398,
+        radius: 10
       },
       {
         target: new BABYLON.Vector3(-2, 5, 0),
-        alpha: 1.5567992412104268,
-        beta: 1.2499153732814252,
-        radius: 7.162916214740841
+        alpha: 1.5504257686979033,
+        beta: 1.393980118084535,
+        radius: 10
       },
       {
         target: new BABYLON.Vector3(-3, 7, 0),
-        alpha: -1.591422484462345,
-        beta: 0.8398498613338736,
-        radius: 4.118716058228563
+        alpha: -1.5750349932532897,
+        beta: 1.3044437106503235,
+        radius: 10
       },
       {
         target: new BABYLON.Vector3(-1.5, 9, 0),
         alpha: 1.559111989188483,
         beta: 1.3964073940352668,
-        radius: 5
+        radius: 10
       },
     ]
   }),
@@ -92,9 +93,13 @@ export default {
   },
   methods: {
     test() {
-      this.animate(0.006527343750000002, 1.0936957457483611, 5, new BABYLON.Vector3(0, 3, 0), 3)
+      this.animate(-0.0343653428024522, 1.3916035668033477, 14, new BABYLON.Vector3(0, 3, 0), 3, true)
     },
-    async animate(alpha, beta, radius, target, speed = 1) {
+    async animate(alpha, beta, radius, target, speed = 1, isIntro = false) {
+      if (this.animation !== null) {
+        this.animation.stop();
+      }
+
       const currentlevel = this.levels[this.currentLevel];
       const previouslevel = this.levels[this.previousLevel];
 
@@ -102,7 +107,7 @@ export default {
       var animationcameraTarget = new BABYLON.Animation(
             "myAnimationcamera", 
             "target", 
-            speed === 3 ? 30 : 20, 
+            isIntro ? 40 : 20, 
             BABYLON.Animation.ANIMATIONTYPE_VECTOR3, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
@@ -123,7 +128,7 @@ export default {
       var animationcameraAlpha = new BABYLON.Animation(
             "myAnimationcamera", 
             "alpha", 
-            speed === 3 ? 30 : 20, 
+            isIntro ? 60 : 20, 
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
@@ -144,7 +149,7 @@ export default {
       var animationcameraBeta = new BABYLON.Animation(
             "myAnimationcamera", 
             "beta", 
-            speed === 3 ? 30 : 20, 
+            isIntro ? 80 : 20, 
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
@@ -165,7 +170,7 @@ export default {
       var animationcameraRadius = new BABYLON.Animation(
             "myAnimationcamera", 
             "radius", 
-            speed === 3 ? 30 : 20, 
+            isIntro ? 40 : 20, 
             BABYLON.Animation.ANIMATIONTYPE_FLOAT, 
             BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT
         );
@@ -189,19 +194,19 @@ export default {
       this.myCam.animations.push(animationcameraBeta);
       this.myCam.animations.push(animationcameraRadius);
 
-      // this.myCam.upperBetaLimit = null;
-      // this.myCam.lowerBetaLimit = null;
-      // this.myCam.upperAlphaLimit = null;
-      // this.myCam.lowerAlphaLimit = null;
+      this.myCam.upperBetaLimit = null;
+      this.myCam.lowerBetaLimit = null;
+      this.myCam.upperAlphaLimit = null;
+      this.myCam.lowerAlphaLimit = null;
 
-      const myAnim =  this.$scene.beginAnimation(this.myCam, 0, 100 * speed, false, 1);
+      this.animation =  this.$scene.beginAnimation(this.myCam, 0, 100 * speed, false, 1);
 
-      // setTimeout(() => { 
-      // this.myCam.upperBetaLimit = currentlevel.beta;
-      // this.myCam.lowerBetaLimit = currentlevel.beta;
-      // this.myCam.upperAlphaLimit = currentlevel.alpha;
-      // this.myCam.lowerAlphaLimit = currentlevel.alpha;
-      //  }, 6000 * speed);
+      setTimeout(() => { 
+      this.myCam.upperBetaLimit = currentlevel.beta + 0.12;
+      this.myCam.lowerBetaLimit = currentlevel.beta - 0.06;
+      this.myCam.upperAlphaLimit = currentlevel.alpha + 0.12;
+      this.myCam.lowerAlphaLimit = currentlevel.alpha - 0.12;
+       }, 5000);
 
       
     },

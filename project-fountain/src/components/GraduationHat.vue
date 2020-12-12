@@ -67,14 +67,36 @@ export default {
       plane.position = new BABYLON.Vector3(-1.5, 8.69, 2);
       plane.rotation = new BABYLON.Vector3(1.55, 0, 0);
       plane.actionManager = new BABYLON.ActionManager(this.scene);
+      plane.material = grass1;
+
+      const frameRate = 100;
+      const xSlide = new BABYLON.Animation("xSlide", "material.alpha", frameRate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+      const keyFrames = [];
+      keyFrames.push({
+          frame: 0,
+          value: 0
+      });
+      keyFrames.push({
+          frame: 200,
+          value: 1
+      });
+      keyFrames.push({
+          frame: 300,
+          value: 0
+      });
+
+      xSlide.setKeys(keyFrames);
+
+      plane.animations.push(xSlide);
+
+      this.scene.beginAnimation(plane, 0, 300, true);
+
       plane.actionManager.registerAction(
         new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger, function(m){
-            plane.material = grass1;
         })
       );
       plane.actionManager.registerAction(
         new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger, function(m){
-            plane.material = null;
         })
       );
       let l = this;

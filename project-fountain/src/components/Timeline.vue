@@ -45,14 +45,32 @@ export default {
   },
   data: () => ({
     activeItem: 0,
-    opacity: 0
+    opacity: 0,
+    timesLooped: 0
   }),
   computed: {
+    currentLevel: {
+      get() {
+        return this.$store.getters["sceneEvents/currentLevel"];
+      },
+      set(val) {
+        this.$store.commit("sceneEvents/setLevel", val);
+      }
+    },
+    looped: {
+      get() {
+        return this.$store.getters["sceneEvents/looped"];
+      },
+      set(val) {
+        this.$store.commit("sceneEvents/setLooped", val);
+      }
+    }
   },
   watch: {
     start(newVal) {
       if(newVal === true) {
-        setTimeout(this.view, 10000)
+        setTimeout(this.view, 6100);
+        setTimeout(this.loop, 10000);
       }
     }
   },
@@ -64,9 +82,26 @@ export default {
         setTimeout(this.view, 10)
       }
     },
+    loop() {
+      this.timesLooped += 1;
+      if(this.timesLooped === 5) {
+        this.currentLevel = 0;
+        this.activeItem = 0;
+      } else {
+        this.currentLevel += 1;
+        this.activeItem += 1;
+        if (this.timesLooped !== 4) {
+          setTimeout(this.loop, 10000);
+        } else {
+          this.looped = true;
+        }
+      }
+    },
     clicked(item) {
-      this.activeItem = item;
-      this.$store.commit("sceneEvents/setLevel", item);
+      if (this.timesLooped === 4) {
+        this.activeItem = item;
+        this.$store.commit("sceneEvents/setLevel", item);
+      }
     }
   }
 }

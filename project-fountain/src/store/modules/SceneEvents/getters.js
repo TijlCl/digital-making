@@ -11,4 +11,5 @@ export default {
     particleColor2: state => state.particleColor2,
     particleMinSize: state => state.particleMinSize,
     particleMaxSize: state => state.particleMaxSize,
+    looped: state => state.looped
 }

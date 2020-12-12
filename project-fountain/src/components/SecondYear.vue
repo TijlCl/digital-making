@@ -12,23 +12,41 @@ export default {
     scene: Object
   },
   data: () => ({
-    particleSystem: null
+    particleSystem: null,
+    plane: null
   }),
   computed: {
+    currentLevel: {
+      get() {
+        return this.$store.getters["sceneEvents/currentLevel"];
+      },
+      set(val) {
+        this.$store.commit("sceneEvents/setLevel", val);
+      }
+    },
+    looped () {
+      return this.$store.getters["sceneEvents/looped"];
+    }
   },
   watch: {
+    currentLevel (val) {
+      if (val === 2 && !this.looped) {
+        setTimeout(this.start, 2000);
+      }
+    },
     scene (newVal, oldVal){
       //water
       var water = new BABYLON.StandardMaterial("grass1", this.scene);
       water.emissiveTexture = new BABYLON.Texture(waterT, this.scene);
       water.emissiveColor = new BABYLON.Color3.FromHexString('#C2F970');
+      water.alpha = 0
 
-       var plane = BABYLON.MeshBuilder.CreatePlane("sphere1", {}, this.scene);
-       plane.position = new BABYLON.Vector3(-2, 5.75, 2.3);
-       plane.rotation = new BABYLON.Vector3(1.57, 1.6, 0);
-       plane.scaling = new BABYLON.Vector3(3, 3.5, 0);
-       plane.material = water;
-       plane.alpha = 0.5;
+      this.plane = BABYLON.MeshBuilder.CreatePlane("sphere1", {}, this.scene);
+      this.plane.position = new BABYLON.Vector3(-2, 5.75, 2.3);
+      this.plane.rotation = new BABYLON.Vector3(1.57, 1.6, 0);
+      this.plane.scaling = new BABYLON.Vector3(3, 3.5, 0);
+      this.plane.material = water;
+      this.plane.alpha = 0.5;
 
       //water fall
       this.particleSystem = BABYLON.ParticleHelper.CreateDefault(new BABYLON.Vector3(0, 0.5, 0));
@@ -55,11 +73,33 @@ export default {
       this.particleSystem.maxEmitPower = 5;
       this.particleSystem.updateSpeed = 0.001;
 
-      this.particleSystem.start();
      }
   },
   methods: {
-    
+    start() {
+      const frameRate = 100;
+      const xSlide = new BABYLON.Animation("xSlide", "material.alpha", frameRate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+      const keyFrames = [];
+      keyFrames.push({
+          frame: 0,
+          value: 0
+      });
+      keyFrames.push({
+          frame: 300,
+          value: 1
+      });
+
+      xSlide.setKeys(keyFrames);
+
+      this.plane.animations.push(xSlide);
+
+      this.scene.beginAnimation(this.plane, 0, 300, true);
+
+      setTimeout(this.startParticles, 400);
+    },
+    startParticles() {
+      this.particleSystem.start();
+    }
   }
 }
 </script>

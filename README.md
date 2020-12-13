@@ -1,3 +1,5 @@
+# CASE STUDY
+
 I was given to assignment to make an interactive web visualisation of the iconic fountain in front of the campus kaai and apply an online and offline interaction with the visualisation. To do this I worked with the WebGl technologie to bring 3D objects in to a static website. 
 
 # CONCEPT 
@@ -49,6 +51,32 @@ Parameters the user could change are:
 
 For the design of the scene I wanted to focus on effects the light and particles would bring, therefore I kept the scene dark. I wanted to give it a mysterious vibe so I used fog to cover the scene and gave the fountain a mystical glow effect.
 
+# PROCESS
+
+## Part 1
+
+The first step was setting up the project and importing the fountain model into the scene.
+
+<img width="500" height="300" src="./process-ss/phase1-1.png"><img width="500" height="300" src="./process-ss/phase1-2.png">
+
+## Part 2
+
+After that I played around with the basics of babylon.js. This included lights, cameras, skybox,... Here I made my first controllable light and added a dark skybox around the scene. I also made the animations for the camere moving from platform to platform.
+
+<img width="500" height="300" src="./process-ss/phase2-1.png"><img width="500" height="300" src="./process-ss/phase2-2.png">
+
+## Part 3
+
+Next up was setting the mood for the scene. Here I added fog, a glow layer that would represent the water in the fountain and implemented my first particles.
+
+<img width="500" height="300" src="./process-ss/phase3-1.png"><img width="500" height="300" src="./process-ss/phase3-2.png">
+
+## Part 4
+
+After all this was done I implemented the different visualisations that would be displayed on the fountain. I also added a timeline and the tracker for the amount of checked in students.
+
+<img width="500" height="300" src="./process-ss/phase4-1.png"><img width="500" height="300" src="./process-ss/phase4-2.png">
+
 # How expensive would it be to build this application?
 
 As this is a web application it does not have any physical parts that have to be bought to build it. However the time to build it does add up.
@@ -87,3 +115,21 @@ Time spent: 
 - adding noise filter over the visualisation: 3 hours
 
 In total The consultant would be working for 18 days on this project. If the consultant would ask 450 euro per day for 8 hours / day the total cost up until now for the application would be 450 * 18 = 8100 euro.
+
+# HOW TO INSTALL
+
+step 1) Clone the repository to a local folder
+
+step 2) Open the downloaded folder in the terminal
+
+step 3) Run <npm install> 
+  
+step 4) Go to http://localhost:8080/digital-making/ 
+
+## Links
+
+You can visit the visualisation on:
+https://tijlcl.github.io/digital-making/
+
+If you would like to visit the version with the GUI:
+https://tijlcl.github.io/digital-making-gui/

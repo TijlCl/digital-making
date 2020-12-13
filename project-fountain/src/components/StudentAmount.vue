@@ -52,6 +52,16 @@ export default {
     opacity: 0;
     background-color: black;
 }
+@media only screen and (max-width: 1600px) {
+  #student-amount {
+    height: 8vh;
+  }
+  .current-amount {
+    color: white;
+    padding: 10px;
+    font-size: 2.7vh;
+  }
+}
 .current-amount {
   color: white;
   padding: 10px;

@@ -108,7 +108,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 #title {
-  font-size: 48px;
+  font-size: 3.6117381489841986vh;
   position: absolute;
   /* margin-left: auto; */
   /* margin-right: auto; */
@@ -120,7 +120,7 @@ export default {
   color: white;
 }
 #loader-text-1 {
-  font-size: 48px;
+  font-size: 3.6117381489841986vh;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
@@ -132,7 +132,7 @@ export default {
 }
 
 #loader-text-2 {
-  font-size: 48px;
+  font-size: 3.6117381489841986vh;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
@@ -143,7 +143,7 @@ export default {
   opacity: 0;
 }
 #loader-text-3 {
-  font-size: 48px;
+  font-size: 3.6117381489841986vh;
   position: absolute;
   margin-left: auto;
   margin-right: auto;

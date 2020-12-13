@@ -113,6 +113,11 @@ export default {
     left: 50px;
     opacity: 0;
 }
+@media only screen and (max-width: 1600px) {
+  .timeline {
+    top: 18vh;
+  }
+}
 .v-timeline-item__dot {
    z-index: 1;
 }

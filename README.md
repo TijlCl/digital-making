@@ -50,9 +50,7 @@ Parameters the user could change are:
 For the design of the scene I wanted to focus on effects the light and particles would bring, therefore I kept the scene dark. I wanted to give it a mysterious vibe so I used fog to cover the scene and gave the fountain a mystical glow effect.
 
 # PROCESS
-<p align="left">
-  <img width="460" height="300" src="./process-ss/phase1-1.png">
-</p>
+<img width="460" height="300" src="./process-ss/phase1-1.png"><img width="460" height="300" src="./process-ss/phase1-2.png">
 
 ![Alt text](./process-ss/phase1-1.png)![Alt text](./process-ss/phase1-2.png)
 

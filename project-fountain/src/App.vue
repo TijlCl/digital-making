@@ -8,9 +8,9 @@
       <!-- <h1 id="title">The journey of students</h1> -->
       <h2 id="loader-text-1">The journey of a student is full of challenges, the few who push through will reach the top</h2>
       <br />
-      <h3 id="loader-text-2">Every year hundreds of students start their multec adventure but through the 3 years many of them fall off.</h3>
+      <h3 id="loader-text-2">Every year hundreds of students start their multec adventure but through the 3 years many of them fall off</h3>
       <br />
-      <h3 id="loader-text-3">This visualisation will take you through their adventure and show how many actually reach graduation.</h3>
+      <h3 id="loader-text-3">This visualisation will take you through their adventure and show how many actually reach graduation</h3>
       <v-btn @click="start()" id="start-btn" outlined color="white">Start your journey</v-btn>
     </div>
   </div>

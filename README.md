@@ -1,3 +1,5 @@
+# CASE STUDY
+
 I was given to assignment to make an interactive web visualisation of the iconic fountain in front of the campus kaai and apply an online and offline interaction with the visualisation. To do this I worked with the WebGl technologie to bring 3D objects in to a static website. 
 
 # CONCEPT 
@@ -113,3 +115,21 @@ Time spent: 
 - adding noise filter over the visualisation: 3 hours
 
 In total The consultant would be working for 18 days on this project. If the consultant would ask 450 euro per day for 8 hours / day the total cost up until now for the application would be 450 * 18 = 8100 euro.
+
+# HOW TO INSTALL
+
+step 1) Clone the repository to a local folder
+
+step 2) Open the downloaded folder in the terminal
+
+step 3) Run <npm install> 
+  
+step 4) Go to http://localhost:8080/digital-making/ 
+
+## Links
+
+You can visit the visualisation on:
+https://tijlcl.github.io/digital-making/
+
+If you would like to visit the version with the GUI:
+https://tijlcl.github.io/digital-making-gui/

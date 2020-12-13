@@ -1,14 +1,16 @@
 <template>
 <v-app>
   <div id="data-app">
+    <h1 id="title">The journey of students</h1>
     <div class="noise"></div>
     <fountain-scene class="scene" :start="appStarted"/>
     <div id="loader">
-      <h1 id="title">The journey of students</h1>
-      <h2 id="loader-text-1">The journey of a student is full challenges, the few who push through will reach the top</h2>
+      <!-- <h1 id="title">The journey of students</h1> -->
+      <h2 id="loader-text-1">The journey of a student is full of challenges, the few who push through will reach the top</h2>
       <br />
-      <h3 id="loader-text-2">This visualisation will take you through the years of multec students and show you how many actually reach graduation.</h3>
-      <h3 id="loader-text-3">Each year hundreds of students start their multec career but through the 3 years most of the students fall off.</h3>
+      <h3 id="loader-text-2">Every year hundreds of students start their multec adventure but through the 3 years many of them fall off.</h3>
+      <br />
+      <h3 id="loader-text-3">This visualisation will take you through their adventure and show how many actually reach graduation.</h3>
       <v-btn @click="start()" id="start-btn" outlined color="white">Start your journey</v-btn>
     </div>
   </div>
@@ -30,15 +32,18 @@ window.setTimeout(function(){
   var loopback = false;
 
 function MyFadeFunction() {
-   if(window.appStarted === false && titleOpacity < 1) {
-       titleOpacity += .075;
-   }
-   if(window.appStarted === false && titleOpacity >= 0.7 && text1Opacity < 1) {
+  //  if(window.appStarted === false && titleOpacity < 1) {
+  //      titleOpacity += .075;
+  //  }
+   if(window.appStarted === false && text1Opacity < 1) {
        text1Opacity += .03;
    }
    if(window.appStarted === false && text1Opacity >= 0.7 && text2Opacity < 1) {
-       text2Opacity += .075;
-       text3Opacity += .075;
+       text2Opacity += .03;
+   }
+
+   if(window.appStarted === false && text2Opacity >= 0.7 && text3Opacity < 1) {
+       text3Opacity += .03;
    }
 
    if(window.appStarted === false && text3Opacity >= 1 && BtnOpacity < 1) {
@@ -46,7 +51,7 @@ function MyFadeFunction() {
    }
 
    if (window.appStarted === true) {
-     titleOpacity -= .1;
+     titleOpacity += .1;
      text1Opacity -= .1;
      text2Opacity -= .1;
      text3Opacity -= .1;
@@ -68,7 +73,7 @@ function MyFadeFunction() {
    if (bgOpacity < 0) {
     document.getElementById('loader').style.display = 'none';
    }
-   if (window.appStarted === false || titleOpacity > 0 || BtnOpacity > 0 || bgOpacity > 0) {
+   if (window.appStarted === false || text1Opacity > 0 || BtnOpacity > 0 || bgOpacity > 0) {
     setTimeout(function(){MyFadeFunction()},100);
    }
 }
@@ -103,47 +108,48 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 #title {
-  font-size: 70px;
+  font-size: 48px;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 35vh;
+  top: 2vh;
   text-align: center;
   opacity: 0;
+  color: white;
 }
 #loader-text-1 {
-  font-size: 16px;
+  font-size: 48px;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 42vh;
+  top: 30vh;
   text-align: center;
   opacity: 0;
 }
 
 #loader-text-2 {
-  font-size: 18px;
+  font-size: 48px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 40vh;
+  text-align: center;
+  opacity: 0;
+}
+#loader-text-3 {
+  font-size: 48px;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   top: 50vh;
-  text-align: center;
-  opacity: 0;
-}
-#loader-text-3 {
-  font-size: 18px;
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 53vh;
   text-align: center;
   opacity: 0;
 }

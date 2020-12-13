@@ -110,10 +110,10 @@ export default {
 #title {
   font-size: 48px;
   position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  left: 2vw;
+  /* right: 0; */
   top: 2vh;
   text-align: center;
   opacity: 0;

@@ -50,7 +50,30 @@ Parameters the user could change are:
 For the design of the scene I wanted to focus on effects the light and particles would bring, therefore I kept the scene dark. I wanted to give it a mysterious vibe so I used fog to cover the scene and gave the fountain a mystical glow effect.
 
 # PROCESS
+
+## Part 1
+
+The first step was setting up the project and importing the fountain model into the scene.
+
 <img width="500" height="300" src="./process-ss/phase1-1.png"><img width="500" height="300" src="./process-ss/phase1-2.png">
+
+## Part 2
+
+After that I played around with the basics of babylon.js. This included lights, cameras, skybox,... Here I made my first controllable light and added a dark skybox around the scene. I also made the animations for the camere moving from platform to platform.
+
+<img width="500" height="300" src="./process-ss/phase2-1.png"><img width="500" height="300" src="./process-ss/phase2-2.png">
+
+## Part 3
+
+Next up was setting the mood for the scene. Here I added fog, a glow layer that would represent the water in the fountain and implemented my first particles.
+
+<img width="500" height="300" src="./process-ss/phase3-1.png"><img width="500" height="300" src="./process-ss/phase3-2.png">
+
+## Part 4
+
+After all this was done I implemented the different visualisations that would be displayed on the fountain. I also added a timeline and the tracker for the amount of checked in students.
+
+<img width="500" height="300" src="./process-ss/phase4-1.png"><img width="500" height="300" src="./process-ss/phase4-2.png">
 
 # How expensive would it be to build this application?
 

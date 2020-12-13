@@ -1,6 +1,6 @@
 <template>
   <div>
-    <control-panel />
+    <!-- <control-panel /> -->
     <timeline :start="start" />
     <student-amount :start="start" />
     <Scene style="height: 100vh;" v-model="myScene" ref="scene" @keydown.native="keyHandlerDown" @complete="sceneComplete" >

@@ -201,12 +201,12 @@ export default {
 
       this.animation =  this.$scene.beginAnimation(this.myCam, 0, 100 * speed, false, 1);
 
-      // setTimeout(() => { 
-      // this.myCam.upperBetaLimit = currentlevel.beta + 0.12;
-      // this.myCam.lowerBetaLimit = currentlevel.beta - 0.06;
-      // this.myCam.upperAlphaLimit = currentlevel.alpha + 0.12;
-      // this.myCam.lowerAlphaLimit = currentlevel.alpha - 0.12;
-      //  }, 5000);
+      setTimeout(() => { 
+      this.myCam.upperBetaLimit = currentlevel.beta + 0.12;
+      this.myCam.lowerBetaLimit = currentlevel.beta - 0.06;
+      this.myCam.upperAlphaLimit = currentlevel.alpha + 0.12;
+      this.myCam.lowerAlphaLimit = currentlevel.alpha - 0.12;
+       }, 5000);
 
       
     },

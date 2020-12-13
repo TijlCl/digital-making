@@ -50,7 +50,7 @@ Parameters the user could change are:
 For the design of the scene I wanted to focus on effects the light and particles would bring, therefore I kept the scene dark. I wanted to give it a mysterious vibe so I used fog to cover the scene and gave the fountain a mystical glow effect.
 
 # PROCESS
-![alt text](https://github.com/tijlcl/digital-making/blob/main/process-ss/phase-1-1.png?raw=true)
+![plot](./process-ss/phase1-1.png)
 
 # How expensive would it be to build this application?
 

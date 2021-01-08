@@ -116,15 +116,21 @@ Time spent: 
 
 In total The consultant would be working for 18 days on this project. If the consultant would ask 450 euro per day for 8 hours / day the total cost up until now for the application would be 450 * 18 = 8100 euro.
 
+# Installation concepts
+
+<img width="500" height="300" src="./process-ss/installation_concepts.jpg">
+
 # HOW TO INSTALL
 
 step 1) Clone the repository to a local folder
 
 step 2) Open the downloaded folder in the terminal
 
-step 3) Run <npm install> 
+step 3) Run <npm install>
   
-step 4) Go to http://localhost:8080/digital-making/ 
+step 4) Run <npm serve> 
+  
+step 5) Go to http://localhost:8080/digital-making/ 
 
 ## Links
 
